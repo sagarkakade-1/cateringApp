@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employees - Catering Management System</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+    <!-- Include navigation and sidebar -->
+    <div th:replace="dashboard/index :: nav"></div>
+    <div th:replace="dashboard/index :: sidebar"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container-fluid fade-in">
+            <!-- Page Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="h3 mb-0 fw-bold">
+                    <i class="bi bi-people me-2 text-primary"></i>
+                    Employee Management
+                </h1>
+                <a th:href="@{/employees/new}" class="btn btn-primary">
+                    <i class="bi bi-person-plus me-2"></i>
+                    Add Employee
+                </a>
+            </div>
+
+            <!-- Module Placeholder -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="module-placeholder">
+                        <i class="bi bi-people"></i>
+                        <h4>Employee Management Module</h4>
+                        <p>
+                            Manage your catering staff with role-based assignments, performance tracking, 
+                            and salary calculations based on orders served.
+                        </p>
+                        <div class="row mt-4">
+                            <div class="col-md-4">
+                                <h6><i class="bi bi-person-badge text-primary me-2"></i>Employee Types</h6>
+                                <ul class="text-start">
+                                    <li>Cook</li>
+                                    <li>Bai (Helper)</li>
+                                    <li>Waiter</li>
+                                    <li>Driver</li>
+                                    <li>Display Table Boy</li>
+                                    <li>Service Boy</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+                                <h6><i class="bi bi-graph-up text-success me-2"></i>Performance Tracking</h6>
+                                <ul class="text-start">
+                                    <li>Orders served per day</li>
+                                    <li>Customer feedback</li>
+                                    <li>Attendance tracking</li>
+                                    <li>Performance ratings</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+                                <h6><i class="bi bi-currency-rupee text-info me-2"></i>Salary Management</h6>
+                                <ul class="text-start">
+                                    <li>Order-based payments</li>
+                                    <li>Monthly salary calculation</li>
+                                    <li>Bonus and incentives</li>
+                                    <li>Payment history</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script th:src="@{/js/app.js}"></script>
+</body>
+</html>
+

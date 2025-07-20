@@ -1,6 +1,6 @@
 # 🍽️ Catering Management System
 
-A comprehensive full-stack web application for managing catering business operations. Built with Spring Boot backend, React frontend, and PostgreSQL database.
+A comprehensive full-stack web application for managing catering business operations. Built with Spring Boot backend, Thymeleaf templates, and PostgreSQL database.
 
 ## 📋 Table of Contents
 
@@ -70,16 +70,13 @@ A comprehensive full-stack web application for managing catering business operat
 - **Maven**
 
 ### Frontend
-- **React 18**
-- **React Router DOM**
+- **Thymeleaf** (Server-side templating)
+- **HTML5, CSS3, JavaScript**
 - **Bootstrap 5**
-- **React Bootstrap**
-- **Chart.js & React-Chartjs-2**
-- **Axios**
-- **React Toastify**
+- **Chart.js**
+- **Bootstrap Icons**
 
 ### Development Tools
-- **Maven Frontend Plugin**
 - **Spring Boot DevTools**
 - **Embedded Tomcat Server**
 
@@ -102,12 +99,6 @@ Before running the application, ensure you have:
    mvn -version
    ```
 
-4. **Node.js 16+ and npm (for development only)**
-   ```bash
-   node --version
-   npm --version
-   ```
-
 ## 🚀 Quick Start
 
 ### Option 1: Double-Click Startup (Recommended)
@@ -120,7 +111,7 @@ Before running the application, ensure you have:
 
 The application will automatically:
 - Start the Spring Boot backend
-- Build and serve the React frontend
+- Serve Thymeleaf templates
 - Open your browser to `http://localhost:8080`
 
 ### Option 2: Command Line
@@ -168,7 +159,7 @@ psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE catering_db TO catering_us
 
 If you prefer manual setup or need to customize the configuration:
 
-### 1. Backend Setup
+### Backend Setup
 
 ```bash
 # Navigate to project root
@@ -179,23 +170,9 @@ mvn clean install
 mvn spring-boot:run
 ```
 
-### 2. Frontend Setup (Development Only)
+### Access the Application
 
-```bash
-# Navigate to frontend directory
-cd frontend
-
-# Install dependencies
-npm install
-
-# Start development server
-npm start
-```
-
-### 3. Access the Application
-
-- **Production**: http://localhost:8080
-- **Development**: http://localhost:3000 (frontend dev server)
+- **Application**: http://localhost:8080
 
 ## 📁 Project Structure
 
@@ -205,20 +182,23 @@ catering-management/
 │   ├── entity/              # JPA Entities
 │   ├── repository/          # Data Access Layer
 │   ├── service/             # Business Logic
-│   ├── controller/          # REST Controllers
+│   ├── controller/          # Web & REST Controllers
 │   ├── config/              # Configuration Classes
 │   └── CateringApplication.java
 ├── src/main/resources/
+│   ├── templates/           # Thymeleaf Templates
+│   │   ├── layout/          # Layout Templates
+│   │   ├── auth/            # Authentication Pages
+│   │   ├── dashboard/       # Dashboard Pages
+│   │   ├── orders/          # Order Management
+│   │   ├── employees/       # Employee Management
+│   │   └── ...              # Other Modules
+│   ├── static/
+│   │   ├── css/             # Custom CSS
+│   │   └── js/              # Custom JavaScript
 │   ├── application.properties
 │   ├── schema.sql           # Database Schema
 │   └── data.sql             # Sample Data
-├── frontend/
-│   ├── src/
-│   │   ├── components/      # React Components
-│   │   ├── services/        # API Services
-│   │   └── App.js
-│   ├── public/
-│   └── package.json
 ├── start-app.bat            # Windows Startup Script
 ├── start-app.sh             # Linux/Mac Startup Script
 ├── pom.xml                  # Maven Configuration
@@ -238,19 +218,19 @@ Password: admin123
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| POST | `/api/auth/login` | User login |
-| POST | `/api/auth/logout` | User logout |
-| GET | `/api/auth/status` | Check auth status |
-| GET | `/api/auth/profile` | Get user profile |
+| GET | `/login` | Login page |
+| POST | `/login` | Process login |
+| POST | `/logout` | User logout |
+| GET | `/dashboard` | Dashboard page |
 
-### Core Module Endpoints (Coming Soon)
+### Module Endpoints
 
-- `/api/orders` - Order management
-- `/api/employees` - Employee management
-- `/api/inventory` - Inventory management
-- `/api/customers` - Customer management
-- `/api/tasks` - Task management
-- `/api/reports` - Reports and analytics
+- `/orders` - Order management pages
+- `/employees` - Employee management pages
+- `/inventory` - Inventory management pages
+- `/customers` - Customer management pages
+- `/tasks` - Task management pages
+- `/reports` - Reports and analytics pages
 
 ## 🗃️ Database Schema
 
@@ -283,6 +263,10 @@ spring.datasource.password=catering_pass
 # JPA Configuration
 spring.jpa.hibernate.ddl-auto=create-drop
 spring.jpa.show-sql=true
+
+# Thymeleaf Configuration
+spring.thymeleaf.cache=false
+spring.thymeleaf.mode=HTML
 ```
 
 ### Environment Variables
@@ -301,16 +285,9 @@ export DB_PASS=catering_pass
 
 ### Running in Development Mode
 
-1. **Backend Development**:
-   ```bash
-   mvn spring-boot:run -Dspring-boot.run.profiles=dev
-   ```
-
-2. **Frontend Development**:
-   ```bash
-   cd frontend
-   npm start
-   ```
+```bash
+mvn spring-boot:run -Dspring-boot.run.profiles=dev
+```
 
 ### Building for Production
 
@@ -354,15 +331,15 @@ java -jar target/catering-management-1.0.0.jar
 
 - **Application logs**: Check console output
 - **Database logs**: Check PostgreSQL logs
-- **Frontend logs**: Check browser developer console
+- **Browser logs**: Check browser developer console
 
 ## 📝 Development Roadmap
 
 ### Phase 1 (Current)
 - ✅ Project structure and authentication
 - ✅ Database schema and sample data
-- ✅ Basic dashboard with mock data
-- ✅ Responsive UI framework
+- ✅ Dashboard with charts and statistics
+- ✅ Thymeleaf templates and responsive UI
 
 ### Phase 2 (Next)
 - 🔄 Complete Order Management module
@@ -403,7 +380,15 @@ This application is designed for:
 - **Catering Managers** - Staff who handle day-to-day operations
 - **Event Coordinators** - Users who manage multiple events and orders
 
+## 🌟 Key Benefits
+
+- **No Complex Frontend Framework** - Uses familiar HTML, CSS, and JavaScript
+- **Server-Side Rendering** - Fast page loads and SEO-friendly
+- **Desktop-Like Experience** - Double-click to start, runs locally
+- **Professional UI** - Modern Bootstrap-based interface
+- **Comprehensive Business Solution** - All catering operations in one place
+
 ---
 
-**Made with ❤️ for the catering industry**
+**Made with ❤️ for the catering industry using Spring Boot + Thymeleaf**
 
