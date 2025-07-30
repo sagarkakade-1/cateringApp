@@ -61,7 +61,7 @@ public interface ExperienceRepository extends JpaRepository<Experience, Long> {
      * Find long-term experiences (more than 1 year)
      */
     @Query("SELECT e FROM Experience e WHERE e.portfolio.id = :portfolioId AND " +
-           "(e.endDate IS NULL OR FUNCTION('DATEDIFF', COALESCE(e.endDate, CURRENT_DATE), e.startDate) >= 365)")
+           "(e.endDate IS NULL OR (COALESCE(e.endDate, CURRENT_DATE) - e.startDate) >= 365)")
     List<Experience> findLongTermExperiencesByPortfolioId(@Param("portfolioId") Long portfolioId);
 
     /**
