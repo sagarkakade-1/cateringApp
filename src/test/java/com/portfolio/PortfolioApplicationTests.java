@@ -108,7 +108,7 @@ class PortfolioApplicationTests {
         // Perform test
         mockMvc.perform(get("/api/portfolio/projects")
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpected(status().isOk())
+                .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$").isArray())
                 .andExpect(jsonPath("$.length()").value(2))

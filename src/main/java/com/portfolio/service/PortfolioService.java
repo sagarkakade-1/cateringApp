@@ -13,6 +13,8 @@ import com.portfolio.entity.Education;
 import com.portfolio.repository.PortfolioRepository;
 import com.portfolio.repository.ProjectRepository;
 import com.portfolio.repository.SkillRepository;
+import com.portfolio.repository.ExperienceRepository;
+import com.portfolio.repository.EducationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,14 +38,20 @@ public class PortfolioService {
     private final PortfolioRepository portfolioRepository;
     private final ProjectRepository projectRepository;
     private final SkillRepository skillRepository;
+    private final ExperienceRepository experienceRepository;
+    private final EducationRepository educationRepository;
 
     @Autowired
     public PortfolioService(PortfolioRepository portfolioRepository,
                            ProjectRepository projectRepository,
-                           SkillRepository skillRepository) {
+                           SkillRepository skillRepository,
+                           ExperienceRepository experienceRepository,
+                           EducationRepository educationRepository) {
         this.portfolioRepository = portfolioRepository;
         this.projectRepository = projectRepository;
         this.skillRepository = skillRepository;
+        this.experienceRepository = experienceRepository;
+        this.educationRepository = educationRepository;
     }
 
     /**
@@ -551,4 +559,3 @@ public class PortfolioService {
         }
     }
 }
-
